@@ -1,18 +1,48 @@
 #!/bin/bash
 #主体脚本
 
+
+item=() #存储监控项
+item_switch=() #监控项的开关
+
+item_filter() { #监控项的筛选
+    local a=0 b=0
+    for i in `grep -w "\[.*\]" item.conf | awk -F'[' '{print $2}' | awk -F']' '{print $1}'`
+    do
+        item[$a]=$i
+        let a++
+    done
+    
+    for i in `grep -w "\[.*\]" a.txt | awk -F'=' '{print $2}'`
+    do
+        item_switch[$b]=$i
+        let b++
+    done
+}
+
 #挨个调用脚本
 transfer() {
-    local a
-    for i in `cat script/*`
+    local a=0 #值
+    for i in `echo ${item[*]}`
     do
-        grep -w "^${i}" a.txt | awk -F'=' '{print $2}'
-        if [[ "$a" == "0" ]];then
-            bash script/$i &
+        if [[ "${item_switch[$a]}" == "0" ]];then
+            $i & #将函数放后台
         fi
+        let a++
         sleep 1
     done
 }
+
+#main主体
+
+#先搞出监控项的开关
+item_filter
+
+#将函数加载进来
+for i in `ls script/*`
+do
+    source $i
+done
 
 #不断循环
 while [ 1 ]
