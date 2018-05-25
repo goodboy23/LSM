@@ -15,4 +15,5 @@ disk_gen_i() {
         echo $caveat
         echo $caveat >> $lsm_log
     fi
+    echo >> $lsm_log #空格
 }
