@@ -1,7 +1,7 @@
 #!/bin/bash
 #主体脚本
 
-lsm_log=/tmp/LSM.log
+lsm_log=/tmp/LSM.log #日志存储位置
 
 item=() #存储监控项
 item_switch=() #监控项的开关
@@ -30,7 +30,7 @@ transfer() {
             $i & #将函数放后台
         fi
         let a++
-        sleep 1
+        sleep 60 #60秒检查一次
     done
 }
 
