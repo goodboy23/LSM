@@ -9,9 +9,10 @@ disk_gen_i() {
     
     #日志
     date +%F/%H/%M/%S  >> $lsm_log
-    echo 硬盘i节点获取1只：${dis_i} >> $lsm_log
+    echo 硬盘i节点获取值：${dis_i} >> $lsm_log
     
     if [ $dis_i -ge $value ];then
         echo $caveat
+        echo $caveat >> $lsm_log
     fi
 }
