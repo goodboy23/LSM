@@ -14,7 +14,7 @@ item_filter() { #监控项的筛选
         let a++
     done
     
-    for i in `grep -w "\[.*\]" a.txt | awk -F'=' '{print $2}'`
+    for i in `grep -w "\[.*\]" item.conf | awk -F'=' '{print $2}'`
     do
         item_switch[$b]=$i
         let b++
