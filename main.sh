@@ -1,6 +1,7 @@
 #!/bin/bash
 #主体脚本
 
+lsm_log=/tmp/LSM.log
 
 item=() #存储监控项
 item_switch=() #监控项的开关
