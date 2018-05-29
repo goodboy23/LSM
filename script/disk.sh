@@ -20,7 +20,7 @@ disk_gen_i() {
     local value=80 #报警阀值
     local caveat="根目录i节点超过${value}，当前值：${gen_i}" #警告话语
     
-    data_log disk_gen_i gen_i
+    data_log disk_gen_i $gen_i
     
     if [ $gen_i -ge $value ];then
         error_log disk_gen_i
