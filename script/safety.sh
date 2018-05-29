@@ -1,10 +1,12 @@
 #!/bin/bash
 #安全方面
 
+lsm_init() {
+    lastb_land_list=() #全局变量，存储表
+    lastb_land_wei=0 #表的下标
+    lastb_land_time=`date +%D` #当前时间
+}
 
-lastb_land_list=() #全局变量，存储表
-lastb_land_wei=0 #表的下标
-lastb_land_time=`date +%D` #当前时间
 safety_lastb_land() {
     local ip_list=() #临时存储
     local ip_wei=0 #临时位置
