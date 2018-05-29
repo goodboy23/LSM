@@ -48,6 +48,8 @@ transfer() {
     do
         if [[ "${item_switch[$a]}" == "0" ]];then
             $i & #将函数放后台
+        elif [[ "${item_switch[$a]}" == "3" ]];then
+            $i
         fi
         let a++
     done
@@ -62,7 +64,7 @@ item_filter
 for i in `ls script/*`
 do
     source $i
-    lsm_init #初始化函数
+    lsm_init #初始化函数，包含全局变量
 done
 
 #不断循环
