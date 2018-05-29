@@ -18,7 +18,7 @@ disk_gen_space() {
 disk_gen_i() {
     local gen_i=`df -i | grep -w "/" | awk '{print $5}' | awk -F'%' '{print $1}'` #获取的值
     local value=80 #报警阀值
-    local caveat="根目录节点超过${value}，当前获取值${dis_i}" #警告话语
+    local caveat="根目录i节点超过${value}，当前值：${gen_i}" #警告话语
     
     data_log disk_gen_i gen_i
     
