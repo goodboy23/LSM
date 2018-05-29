@@ -33,7 +33,8 @@ safety_lastb_land() {
     
     data_log safety_lastb_land $lastb_ip
     
-    if [[ ${#lastb_ssh[*]} -ge $value ]];then
+    if [[ ${#lastb_ip[*]} -ge $value ]];then
         error_log safety_lastb_land
     fi
+    
  } 
