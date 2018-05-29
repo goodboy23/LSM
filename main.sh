@@ -1,8 +1,28 @@
 #!/bin/bash
 #主体脚本
 
-lsm_log=/tmp/LSM.log #日志存储位置
 
+
+#########记录########
+lsm_data_log=/tmp/LSM_data.log
+
+#调用 $1写函数名，$2往里传值，监控项只有一个值
+data_log() {
+    echo $(date +%F/%H/%M/%S) "$1 $2" >> $lsm_data_log
+    echo >>  $lsm_data_log
+}
+
+#########记录########
+lsm_error_log=/tmp/LSM_error.log #日志存储位置
+
+#直接调用，$1写上函数名
+error_log() {
+    echo $(date +%F/%H/%M/%S) "$1 报警：${caveat}" #显示
+    echo $(date +%F/%H/%M/%S) "$1 报警：${caveat}" >> $lsm_error_log
+    echo >> $lsm_error_log
+}
+
+#########开关########
 item=() #存储监控项
 item_switch=() #监控项的开关
 
