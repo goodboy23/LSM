@@ -1,6 +1,11 @@
 #!/bin/bash
 #磁盘监控组
 
+
+lsm_init() {
+    a=0
+}
+
 #查询跟目录使用情况
 disk_gen_space() {
     local gen_space=`df -Th | grep -w "/" | awk '{print $6}' | awk -F'%' '{print $1}'` #获取的值
