@@ -6,7 +6,7 @@ lsm_init() {
     lastb_land_wei=0 #表的下标
     lastb_land_time=`date +%D` #当前时间
     
-    w_land_ip=`w | awk '/root/{print $3}' | head -1` #当前第一个ip，为本机的
+    w_land_ip=`w | awk '/pts/{print $3}' | head -1` #当前第一个ip，为本机的
     
     pass_land_hang=`wc -l /etc/passwd | awk '{print $1}'` #获取行数
 }
@@ -47,11 +47,9 @@ safety_lastb_land() {
  
   safety_w_land() {
     local value=$w_land_ip #报警阀值
-    local abno_ip=`w | awk '/root/{print $3}' | grep -v $value` #获取的值
+    local abno_ip=`w | awk '/pts/{print $3}' | grep -v $value` #获取的值
     local caveat="当前有异地登录，获取的ip：$abno_ip" #警告话语)
  
-    echo $value
-    echo $abno_ip
     data_log safety_w_land $abno_ip
 
     if [[ "$abno_ip" != "" ]];then
