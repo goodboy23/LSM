@@ -6,9 +6,9 @@
 #########记录########
 lsm_data_log=/tmp/LSM_data.log
 
-#调用 $1写函数名，监控项只有一个值
+#调用 $1写函数名，$2为值，监控项只有一个值
 data_log() {
-    echo $(date +%F/%H/%M/%S) "$1 $value" >> $lsm_data_log
+    echo $(date +%F/%H/%M/%S) "$1 $2" >> $lsm_data_log
     echo >>  $lsm_data_log
 }
 
