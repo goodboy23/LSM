@@ -6,7 +6,9 @@ lsm_init() {
     lastb_land_wei=0 #表的下标
     lastb_land_time=`date +%D` #当前时间
     
-    w_land_ip=`w | awk '/root/{print {}' | head -1}` #当前第一个ip，为本机的
+    w_land_ip=`w | awk '/root/{print $3}' | head -1` #当前第一个ip，为本机的
+    
+    pass_land_hang=`wc -l /etc/passwd | awk '{print $1}'` #获取行数
 }
 
 safety_lastb_land() {
@@ -54,5 +56,17 @@ safety_lastb_land() {
 
     if [[ "$abno_ip" != "" ]];then
         error_log safety_w_land
+    fi
+ }
+
+ safety_pass_land() {
+    local value=`wc -l /etc/passwd | awk '{print $1}'`
+    local caveat="/etc/passwd有所更改，获取值：${value}行"
+
+    data_log safety_pass_land $pass_land_hang
+
+    if [[ $value -ne $pass_land_hang ]];then
+        error_log safety_pass_land
+        pass_land_hang=`wc -l /etc/passwd | awk '{print $1}'`
     fi
  }
