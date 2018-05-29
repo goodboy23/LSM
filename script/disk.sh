@@ -3,34 +3,26 @@
 
 #查询跟目录使用情况
 disk_gen_space() {
-    local dis_gen=`df -Th | grep -w "/" | awk '{print $6}' | awk -F'%' '{print $1}'` #获取的值
+    local gen_space=`df -Th | grep -w "/" | awk '{print $6}' | awk -F'%' '{print $1}'` #获取的值
     local value=80 #报警阀值
-    local caveat="根目录使用空间超过${value}，当前获取值${dis_gen}" #警告话语
+    local caveat="根目录使用空间超过${value}，当前值：${gen_space}" #警告话语
     
-    #日志
-    date +%F/%H/%M/%S  >> $lsm_log
-    echo 根目录使用空间获取值：${dis_gen} >> $lsm_log
+    data_log disk_gen_space $gen_space
     
-    if [ $dis_gen -ge $value ];then
-        echo $caveat
-        echo $caveat >> $lsm_log
+    if [ $gen_space -ge $value ];then
+        error_log disk_gen_space
     fi
-    echo >> $lsm_log #空格
 }
 
 #查询硬盘i节点
 disk_gen_i() {
-    local dis_i=`df -i | grep -w "/" | awk '{print $5}' | awk -F'%' '{print $1}'` #获取的值
+    local gen_i=`df -i | grep -w "/" | awk '{print $5}' | awk -F'%' '{print $1}'` #获取的值
     local value=80 #报警阀值
     local caveat="根目录节点超过${value}，当前获取值${dis_i}" #警告话语
     
-    #日志
-    date +%F/%H/%M/%S  >> $lsm_log
-    echo 硬盘i节点获取值：${dis_i} >> $lsm_log
+    data_log disk_gen_i gen_i
     
-    if [ $dis_i -ge $value ];then
-        echo $caveat
-        echo $caveat >> $lsm_log
+    if [ $gen_i -ge $value ];then
+        error_log disk_gen_i
     fi
-    echo >> $lsm_log #空格
 }
