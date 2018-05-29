@@ -35,7 +35,7 @@ safety_lastb_land() {
     
     data_log safety_lastb_land $lastb_ip
     
-    if [[ ${#lastb_ip[*]} -ge $value ]];then
+    if [[ ${#list_ip[*]} -ge $value ]];then
         error_log safety_lastb_land
     fi
     
