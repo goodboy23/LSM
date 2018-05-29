@@ -62,6 +62,7 @@ item_filter
 for i in `ls script/*`
 do
     source $i
+    lsm_init #初始化函数
 done
 
 #不断循环
