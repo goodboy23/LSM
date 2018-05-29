@@ -6,9 +6,9 @@
 #########记录########
 lsm_data_log=/tmp/LSM_data.log
 
-#调用 $1写函数名，$2往里传值，监控项只有一个值
+#调用 $1写函数名，监控项只有一个值
 data_log() {
-    echo $(date +%F/%H/%M/%S) "$1 $2" >> $lsm_data_log
+    echo $(date +%F/%H/%M/%S) "$1 $value" >> $lsm_data_log
     echo >>  $lsm_data_log
 }
 
@@ -41,7 +41,7 @@ item_filter() { #监控项的筛选
     done
 }
 
-#挨个调用脚本
+#########监控项执行########
 transfer() {
     local a=0 #值
     for i in `echo ${item[*]}`
@@ -54,7 +54,7 @@ transfer() {
     done
 }
 
-#main主体
+#########主体########
 
 #先搞出监控项的开关
 item_filter
