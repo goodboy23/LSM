@@ -50,7 +50,6 @@ transfer() {
             $i & #将函数放后台
         fi
         let a++
-        sleep 60 #60秒检查一次
     done
 }
 
@@ -69,4 +68,5 @@ done
 while [ 1 ]
 do
     transfer
+     sleep 60 #60秒检查一次
 done
