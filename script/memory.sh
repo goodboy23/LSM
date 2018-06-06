@@ -13,8 +13,8 @@ memory_ram_space () {
    echo 已用swap空间:${memory_swap} >> $lsm_log
 
    if [ $memory_swap -ge $value ];then
-       echo $caceat
-       echo $caceat >> $lsm_log
+       echo $caveat
+       echo $caveat >> $lsm_log
    fi
    echo >> $lsm_log #空格
 }
