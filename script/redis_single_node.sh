@@ -50,6 +50,14 @@ format_output(){
 		local info=$(grep -E "$item:" $file | awk -F ':' '{print $2}' | tr -d '\r')
 		myArray[$item]=$info
 	done
+
+	#  print result
+	for item in ${monitor_points[@]}
+	do
+		printf "$(date +"%F %T") $host %-30s %30s\n" "$item ${myArray[$item]}"
+	done
+
+
 	used=${myArray['used_memory']}
 	maxmem=${myArray['maxmemory']}
 	used_percent=$(( ${used}*100 / $maxmem ))
