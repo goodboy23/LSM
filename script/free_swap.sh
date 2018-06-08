@@ -8,11 +8,11 @@ free_swap(){
 #当前时间
 shijian=`date +%Y-%m-%d-%T`
 
-#当前系统内存使用大小
+#当前swap内存使用大小
 swap_total=`free -m |grep Swap|awk '{print $2}'`
-#当前系统内存总大小
+#当前swap内存总大小
 swap_free=`free -m |grep Swap|awk '{print $NF}'`
-#当前系统内存使用比例
+#当前swap内存使用比例
 swap_load=`echo "scale=2;a=$swap_free/$swap_total;if(length(a)==scale(a)) print 0;print 100" | bc`
 swap_warn=20
 if [[ $swap_load -lt $swap_warn ]] ;then
