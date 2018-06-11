@@ -2,6 +2,10 @@
 #cpu监控组
 
 #load average占用
+lsm_init() {
+    a=0
+}
+
 cpu_load_space () {
 local cpu_num=`grep 'model name' /proc/cpuinfo |wc -l` #统计cpu核数
 local load_average=`uptime | awk -F ":" '{print $NF}'|awk -F ","'{print $3}'` #load average取值。
