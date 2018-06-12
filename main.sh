@@ -15,10 +15,10 @@ data_log() {
 #########记录########
 lsm_error_log=/tmp/LSM_error.log #日志存储位置
 
-#直接调用，$1写上函数名
+#直接调用，$1写上函数名，$2写告警话语的函数
 error_log() {
-    echo $(date +%F/%H/%M/%S) "$1 ${caveat}" #显示
-    echo $(date +%F/%H/%M/%S) "$1 ${caveat}" >> $lsm_error_log
+    echo $(date +%F/%H/%M/%S) "$1 $2" #显示
+    echo $(date +%F/%H/%M/%S) "$1 $2" >> $lsm_error_log
     echo >> $lsm_error_log
 }
 
