@@ -6,9 +6,9 @@
 #########记录########
 lsm_data_log=/tmp/LSM_data.log
 
-#调用 $1写函数名，$2为值，监控项只有一个值
+#调用 $1写函数名
 data_log() {
-    echo $(date +%F/%H/%M/%S) "$1 $2" >> $lsm_data_log
+    echo $(date +%F/%H/%M/%S) "$1 $key" >> $lsm_data_log
     echo >>  $lsm_data_log
 }
 
@@ -17,8 +17,8 @@ lsm_error_log=/tmp/LSM_error.log #日志存储位置
 
 #直接调用，$1写上函数名
 error_log() {
-    echo $(date +%F/%H/%M/%S) "$1 报警：${caveat}" #显示
-    echo $(date +%F/%H/%M/%S) "$1 报警：${caveat}" >> $lsm_error_log
+    echo $(date +%F/%H/%M/%S) "$1 ${caveat}" #显示
+    echo $(date +%F/%H/%M/%S) "$1 ${caveat}" >> $lsm_error_log
     echo >> $lsm_error_log
 }
 
