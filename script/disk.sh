@@ -11,7 +11,7 @@ disk_gen_space() {
 
     data_log disk_gen_space
 
-    if [ $key -ge $value];then
+    if [ $key -ge $value ];then
         error_log disk_gen_space
     fi
 }
