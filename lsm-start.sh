@@ -3,7 +3,7 @@
 
 
 
-#########记录########
+#########数据########
 lsm_data_log=/tmp/LSM_data.log
 
 #调用 $1写函数名
@@ -12,13 +12,12 @@ data_log() {
     echo >>  $lsm_data_log
 }
 
-#########记录########
+#########日志########
 lsm_error_log=/tmp/LSM_error.log #日志存储位置
 
-#直接调用，$1写上函数名，$2写告警话语的函数
+#直接调用，$1填写1=警告，2=严重，3=灾难，$2填写话语
 error_log() {
-    echo $(date +%F/%H/%M/%S) "$1 $2" #显示
-    echo $(date +%F/%H/%M/%S) "$1 $2" >> $lsm_error_log
+    echo $(date +%F/%H/%M/%S) "$1 $caveat"
     echo >> $lsm_error_log
 }
 
@@ -48,8 +47,6 @@ transfer() {
     do
         if [[ "${item_switch[$a]}" == "0" ]];then
             $i & #将函数放后台
-        elif [[ "${item_switch[$a]}" == "3" ]];then
-            $i
         fi
         let a++
     done
@@ -64,12 +61,11 @@ item_filter
 for i in `ls script/*`
 do
     source $i
-    lsm_init #初始化函数，包含全局变量
 done
 
 #不断循环
 while [ 1 ]
 do
     transfer
-     sleep 60 #60秒检查一次
+    sleep 60 #60秒检查一次
 done
